@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+// import axios from "axios";
+// import { useState } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Input } from "./Login";
 
@@ -26,11 +26,15 @@ export const EditBookData = () => {
           data-testid="update-form-thumbnail"
           placeholder="Enter updated thumbnail url"
         />
+        <br />
         <Textarea
+        style={{marginTop: "20px"}}
           data-testid="update-form-description"
           placeholder="Update long Description"
         />
-        <Input dat-testid="update-form-submit" type="submit" value="Update" />
+        <br />
+        <br />
+        <Input  style={{cursor: "pointer"}} dat-testid="update-form-submit" type="submit" value="Update" />
       </Form>
     </>
   );

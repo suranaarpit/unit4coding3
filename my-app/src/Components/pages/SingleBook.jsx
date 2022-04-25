@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -6,15 +5,28 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 // style for Flex
-const Flex = styled.div``;
+const Flex = styled.div`
+  display: flex;
+  width: 90%;
+  margin: auto;
+`;
 
 // add style for button
 export const Button = styled.button``;
 export const SingleBook = () => {
-  console.log(params);
+  const [data, setData] = useState([]);
+  const { id } = useParams();
   useEffect(() => {
     // make a GET request to http://localhost:8080/books/${id}`
     // use useParams to get the id
+    const getData = async () => {
+      let res = await fetch(`http://localhost:8080/books/${id}`);
+      let resdata = await res.json();
+
+      console.log(resdata);
+      setData(resdata);
+    };
+    getData();
   }, []);
 
   return (
@@ -35,7 +47,7 @@ export const SingleBook = () => {
             </div>
           </Flex>
           <Link to={`/books/${data.id}/edit`}>
-            <Button>Edit</Button>
+            <Button  style={{cursor: "pointer"}}>Edit</Button>
           </Link>
         </>
       )}

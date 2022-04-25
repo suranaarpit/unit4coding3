@@ -46,7 +46,7 @@ export const Login = () => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Input value = "Login" type={"submit"} data-testid="login-form-submit" />
+        <Input style={{cursor: "pointer"}} value = "Login" type={"submit"} data-testid="login-form-submit" />
       </Form>
     </>
   );

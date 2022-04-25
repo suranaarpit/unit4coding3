@@ -1,17 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { BookCard } from "./BookCard";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Grid = styled.div`
- add required style here
+ display: grid;
+ grid-template-columns: repeat(4, 370px);
 `;
 
 const Books = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     // make a GET request to http://localhost:8080/books to get all the books data
+    const getData = async () => {
+      let res = await fetch("http://localhost:8080/books");
+      let resdata = await res.json();
+
+      console.log(resdata);
+      setData(resdata);
+    };
+    getData();
   }, []);
 
   return (
@@ -20,7 +28,11 @@ const Books = () => {
       <Grid data-testid="books-container">
         {/* {!!data && 
           // map thorugh the data and use <BookCard/> component to display each book
+          
           } */}
+        {data.map((item) => {
+          return <BookCard key={item.id} {...item} />;
+        })}
       </Grid>
     </>
   );
